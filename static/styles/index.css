@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Poetsen+One&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('/static/images/fundo_inicio.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container h1{
+    font-family: Poetsen One, sans serif;
+    color: #d28394;
+    margin-top: 100px;
+    margin-left: 30px;
+    font-size: 50px;
+}
+
+.container p{
+    font-family: Inter, sans serif;
+    font-size: 20px;
+    margin-left: 150px;
+    color:#644647;
+}
+
+.botao {
+    margin: 300px 0 0 100px;
+    text-decoration: none;
+    color: #ffd1db;
+    font-weight: bold;
+    font-size: 15px; 
+    background-color: #644647;
+    border-radius: 20px;
+    padding: 10px 20px;
+    position: absolute;
+    right: 670px;
+    font-family: Inter, sans serif;
+}
+
+.botao a{
+    text-decoration: none;
+    color: #ffd1db;
+}

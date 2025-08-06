@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/styles/select.css">
+    <title>Seleção de Cartas</title>
+</head>
+<style>
+    .selecionado img {
+        border: 5px solid #d28394;
+        box-shadow: 0 0 20px rgba(255, 105, 180, 0.7);
+        border-radius: 100px;
+        transition: 0.3s;
+    }
+</style>
+
+
+<body>
+    <div class="container">
+        <h1>Escolha quatro personagens</h1>
+        <div class="hellokitty">
+            <img src="/static/images/select/hello_kitty.png" alt="">
+
+            <h4 class="hello-kitty">Hello Kitty</h4>
+        </div>
+        <div class="mymelody">
+            <img src="/static/images/select/my_melody.png" alt="">
+            <h4 class="my-melody">My Melody</h4>
+        </div>
+        <div class="pochacco">
+            <img src="/static/images/select/pochacco.png" alt="">
+            <h4 class="_pochacco">Pochacco</h4>
+        </div>
+        <div class="cinnamaroli">
+            <img src="/static/images/select/cinnamaroli.png" alt="">
+            <h4 class="_cinnamaroli">Cinnamaroli</h4>
+        </div>
+        <div class="badtemaru">
+            <img src="/static/images/select/badtz-maru.png" alt="">
+            <h4 class="_badtemaru">Badtemaru</h4>
+        </div>
+        <div class="kuromi">
+            <img src="/static/images/select/kuromi.png" alt="">
+            <h4 class="_kuromi">Kuromi</h4>
+        </div>
+        <div class="keroppi">
+            <img src="/static/images/select/keroppi.png" alt="">
+            <h4 class="_keroppi">Keroppi</h4>
+        </div>
+        <div class="pompompurin">
+            <img src="/static/images/select/pompompurin.png" alt="">
+            <h4 class="_pompompurin">Pompom Purin</h4>
+        </div>
+        <a class="botao" name="botao">></a>
+
+    </div>
+
+
+    <script>
+
+    
+
+      
+        const maxSelecionados = 4;
+        const selecionados = new Map(); // Usar um Map para armazenar nome -> caminho_da_imagem
+
+        const personagensDivs = document.querySelectorAll('.container > div:not(.botao)'); // Seleciona apenas os divs dos personagens
+        const botao = document.querySelector('.botao');
+
+        // Mapeamento dos nomes para os caminhos completos das imagens (para fácil acesso depois)
+        const cardData = {
+            "Hello Kitty": { name: "Hello Kitty", image: "/static/images/cartas/hello_kitty.png", carta: "/static/images/cartas/hello_kitty.png", pontos: "285"},
+            "My Melody": { name: "My Melody", image: "/static/images/cartas/my_melody.png", carta: "/static/images/cartas/my_melody.png", pontos: "280" },
+            "Pochacco": { name: "Pochacco", image: "/static/images/cartas/pochacco.png", carta: "/static/images/cartas/pochacco.png", pontos: "255" },
+            "Cinnamaroli": { name: "Cinnamaroli", image: "/static/images/cartas/cinnamarolli.png", carta: "/static/images/cartas/cinnamarolli.png", pontos: "275" },
+            "Badtemaru": { name: "Badtemaru", image: "/static/images/cartas/bedtz_maru.png", carta: "/static/images/cartas/bedtz_maru.png", pontos: "195" },
+            "Kuromi": { name: "Kuromi", image: "/static/images/cartas/kuromi.png", carta: "/static/images/cartas/kuromi.png", pontos: "230" },
+            "Keroppi": { name: "Keroppi", image: "/static/images/cartas/keroppi.png", carta: "/static/images/cartas/keroppi.png", pontos: "245" },
+            "Pompom Purin": { name: "Pompom Purin", image: "/static/images/cartas/pompompurin.png", carta: "/static/images/cartas/pompompurin.png", pontos: "280" }
+        };
+
+        personagensDivs.forEach(personagemDiv => {
+            personagemDiv.addEventListener('click', () => {
+                const nomePersonagem = personagemDiv.querySelector('h4').innerText;
+
+                if (selecionados.has(nomePersonagem)) {
+                    selecionados.delete(nomePersonagem);
+                    personagemDiv.classList.remove('selecionado');
+                } else {
+                    if (selecionados.size < maxSelecionados) {
+                        
+                        selecionados.set(nomePersonagem, cardData[nomePersonagem].carta, cardData[nomePersonagem].carta, cardData[nomePersonagem].pontos); // Armazena nome e imagem
+                        personagemDiv.classList.add('selecionado');
+                    } else {
+                        alert('Você só pode selecionar até 4 personagens.');
+                    }
+                }
+                // console.log('Selecionados:', Array.from(selecionados.keys())); // Para depuração
+                // console.log('Dados selecionados:', Array.from(selecionados.entries())); // Para depuração
+            });
+        });
+
+        botao.addEventListener('click', (event) => {
+            if (selecionados.size !== maxSelecionados) {
+                event.preventDefault(); // Impede o redirecionamento
+                alert('Selecione exatamente 4 personagens para continuar!');
+            } else {
+                debugger
+                const personagensParaJogo = Array.from(selecionados.entries()).map(([nome, imagem, carta, pontos]) => ({
+                    nome: nome,
+                    imagem: imagem,
+                    carta: carta,   
+                    pontos: cardData[nome].pontos
+                    // Aqui você pode adicionar as stats de cada carta, se elas não estiverem no cardData
+                    // Por enquanto, vamos passar só nome e imagem e carregar stats na próxima página
+                }));
+
+                localStorage.setItem('personagensSelecionados', JSON.stringify(personagensParaJogo));
+                window.location.href = '/game'; // Redireciona para a página do jogo
+            }
+        });
+
+
+    </script>
+
+</body>
+
+
+</html>

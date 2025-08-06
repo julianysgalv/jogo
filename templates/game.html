@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="static/styles/game.css">
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="area">
+            <div class="area1">
+
+            </div>
+            <div class="area2">
+
+            </div>
+
+            <div class="jogador">
+
+                <h4>Jogador: <b id="pontosJogador">0</b>
+
+            </div>
+
+            <div class="computador">
+                  <h4>Computador: <b id="pontosComputador">0</b>
+            </div>
+
+
+        </div>
+
+
+        <div class="cartas">
+            <div class="carta">
+
+
+            </div>
+
+            <div class="carta">
+
+            </div>
+            <div class="carta">
+
+            </div>
+            <div class="carta">
+
+            </div>
+        </div>
+
+
+
+        <button class="botao-novo" onclick="adicionarCartaAleatoriaNaArea2();">go</button>
+
+
+    </div>
+    <script>
+
+
+
+        let pontosJogador = 0
+        let pontosComputador = 0
+
+        let pontosCartaJogadorSelecionada = 0;
+        let pontoCartaComputadorSelecionada = 0
+
+
+        const personagensSelecionados = JSON.parse(localStorage.getItem('personagensSelecionados')) || [];
+
+        const cartas = document.querySelectorAll('.carta');
+
+        const area1 = document.querySelector('.area1');
+
+        personagensSelecionados.forEach((personagem, index) => {
+
+            debugger
+            if (cartas[index]) {
+                cartas[index].innerHTML = `
+                <img class='carta' src="${personagem.imagem}" alt="${personagem.nome}";">
+                <input type="hidden" id="personagem${index + 1}" value="${personagem.pontos}">
+            `;
+            }
+        });
+
+
+        // Função para quando clicar na carta
+        cartas.forEach((carta, index) => {
+            carta.addEventListener('click', () => {
+                // Copia o conteúdo da carta clicada para a área1
+                area1.innerHTML = carta.innerHTML;
+
+                debugger
+                console.log(personagensSelecionados);
+
+                // Seleciona a imagem dentro da área1
+                const imgNaArea1 = area1.querySelector('img');
+
+                // Adiciona a classe CSS na imagem
+                if (imgNaArea1) {
+                    imgNaArea1.classList.add('area1');
+                }
+
+                // 🔥 Captura o valor dos pontos da carta (input hidden)
+
+                const inputPontos = document.getElementById(`personagem${index + 1}`);
+
+                debugger
+                if (inputPontos) {
+
+
+                    //Guarda o valor do pontona variavel pontoCartaSelecionada
+                    pontosCartaJogadorSelecionada = parseInt(inputPontos.value);
+                    console.log('Pontos da carta:', pontosCartaJogadorSelecionada);
+
+                }
+            });
+        });
+
+
+        // Mapeamento dos nomes para os caminhos completos das imagens (para fácil acesso depois)
+        const cardData = {
+            "Hello Kitty": { name: "Hello Kitty", image: "/static/images/cartas/hello_kitty.png", carta: "/static/images/cartas/hello_kitty.png", pontos: 285 },
+            "My Melody": { name: "My Melody", image: "/static/images/cartas/my_melody.png", carta: "/static/images/cartas/my_melody.png", pontos: 280 },
+            "Pochacco": { name: "Pochacco", image: "/static/images/cartas/pochacco.png", carta: "/static/images/cartas/pochacco.png", pontos: 255 },
+            "Cinnamaroli": { name: "Cinnamaroli", image: "/static/images/cartas/cinnamarolli.png", carta: "/static/images/cartas/cinnamarolli.png", pontos: 275 },
+            "Badtemaru": { name: "Badtemaru", image: "/static/images/cartas/bedtz_maru.png", carta: "/static/images/cartas/bedtz_maru.png", pontos: 195 },
+            "Kuromi": { name: "Kuromi", image: "/static/images/cartas/kuromi.png", carta: "/static/images/cartas/kuromi.png", pontos: 230 },
+            "Keroppi": { name: "Keroppi", image: "/static/images/cartas/keroppi.png", carta: "/static/images/cartas/keroppi.png", pontos: 245 },
+            "Pompom Purin": { name: "Pompom Purin", image: "/static/images/cartas/pompompurin.png", carta: "/static/images/cartas/pompompurin.png", pontos: 280 }
+        };
+
+        function adicionarCartaAleatoriaNaArea2() {
+            const area2 = document.querySelector('.area2');
+
+            // Pega os valores (objetos) do cardData
+            const personagens = Object.values(cardData);
+
+            // Gera um índice aleatório
+            const indexAleatorio = Math.floor(Math.random() * personagens.length);
+
+            // Pega o personagem aleatório
+            const personagemAleatorio = personagens[indexAleatorio];
+
+            // Cria o HTML da carta
+            area2.innerHTML = `<img class='carta area2' src="${personagemAleatorio.image}" alt="${personagemAleatorio.name}";">`;
+
+            // Guarda o valor dos pontos da carta
+            pontosCartaComputador = personagemAleatorio.pontos;
+            //Verificar qual carta tem mais ponto
+            debugger
+            if (pontosCartaJogadorSelecionada > pontosCartaComputador) {
+                //   pontosComputador = pontoCartaSelecionada
+                pontosJogador += 1
+
+                console.log('Usuario ponto:' + pontosJogador);
+            }
+            else {
+                pontosComputador += 1
+                console.log("Computador ponto:" + pontosComputador);
+
+
+
+            }
+            VerificarGanhador()
+        }
+
+
+        function VerificarGanhador() {
+
+            const pontosJogadorElemento = document.getElementById('pontosJogador');
+            const pontosComputadorElemento = document.getElementById('pontosComputador');
+
+            // 🔥 Atualiza a pontuação do jogador na tag <b>
+            if (pontosJogadorElemento) {
+                pontosJogadorElemento.innerText = pontosJogador;
+            }
+
+              if (pontosComputadorElemento) {
+                pontosComputadorElemento.innerText = pontosComputador;
+            }
+
+            // Verifica se algum dos jogadores chegou a 5 pontos
+            if (pontosJogador >= 5) {
+                alert("Fim de partida, Jogador Ganhou!");
+                reiniciarJogo()
+            } else if (pontosComputador >= 5) {
+                alert("Fim de partida, Computador Ganhou!");
+                reiniciarJogo();
+            }
+        }
+
+        // ✅ Função opcional para reiniciar o jogo
+function reiniciarJogo() {
+    pontosJogador = 0;
+    pontosComputador = 0;
+
+    // 🔥 Atualiza o placar na tela
+    const pontosJogadorElemento = document.getElementById('pontosJogador');
+    if (pontosJogadorElemento) {
+        pontosJogadorElemento.innerText = pontosJogador;
+    }
+
+    // Limpa as áreas de jogo
+    document.querySelector('.area1').innerHTML = '';
+    document.querySelector('.area2').innerHTML = '';
+
+     window.location.href = '/'; // ou '/' dependendo do seu servi
+}
+
+    </script>
+</body>
+
+</html>

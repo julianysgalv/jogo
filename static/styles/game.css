@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Lilita+One&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+    background-image: url('/static/images/fundo_game.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.botao {
+    background-color: #f691b4;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 50px;
+    position: relative;
+    top: 600px;
+    left: 1400px;
+    height: 40px; /* <- Adicione isso */
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+
+.botao:hover {
+    transform: scale(1.05);
+}
+
+.container{
+    margin-top: -35px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+.container .area{
+    margin-top: 20px;
+    width: 940px;
+    height: 550px;
+}
+
+.area1 img{
+   width: 416px;
+    height: 514px;
+    float: left;
+    margin-top: -1px;
+
+}
+
+.area1{
+    background-color: #f691b4;
+    width: 416px;
+    height: 514px;
+    float: left;
+    margin-top: 20px;
+}
+
+.area2{
+    background-color: #ffffff;
+    width: 416px;
+    height: 514px;
+    float: right;
+    margin-top: 20px;
+}
+
+
+.area2 img{
+    background-color: #ffffff;
+    width: 416px;
+    height: 514px;
+    float: right;
+    margin-top: -1px;
+}
+.container .cartas{
+    justify-items: center;
+    align-items: center;
+    display: flex;
+    width: 1400px;
+    margin-top: 40px;
+}
+
+
+.cartas .carta {
+   
+    min-width: 323px;
+    height: 350px;
+    margin: 10px;
+   
+}
+
+
+.carta .area1 {
+    width: 323px;
+    height: 401px;   
+}
+
+.carta img {
+    max-width: 100px;
+    border-radius: 5px;
+}
+
+.carta p {
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+.container .botao-novo{
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    margin-top: -200px;
+    margin-left: 1550px;
+    float: left;
+    background-color: #f691b4;
+    color: white;
+    border: none;
+    border-radius: 100%;
+    font-size: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: transform 0.2s;
+}
+
+.jogador{
+    color: #ffffff;
+    font-size: 30px;
+    width: 200px;
+    height: 200px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.computador{
+    color: #ffffff;
+    font-size: 30px;
+    width: 230px;
+    height: 200px;
+    font-family: 'Roboto', sans-serif;
+    position: relative;
+    left: 530px;
+}

@@ -1,0 +1,124 @@
+@import url('https://fonts.googleapis.com/css2?family=Cal+Sans&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap')
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url('/static/images/fundo_select.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
+    min-height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+.container h1{
+    color: #ffffff;
+    margin-top: 20px;
+    margin-left: 500px;
+    font-size: 25px;
+    font-family: 'Cal Sans', sans-serif;
+}
+
+.hellokitty, .mymelody, .pochacco, .cinnamaroli, .badtemaru, .kuromi, .keroppi, .pompompurin{
+    display: flex;
+    flex-direction: column;
+    width: 200px;
+    margin-left: 100px;
+}
+
+.hellokitty img, .mymelody img, .pochacco img, .cinnamaroli img, .badtemaru img, .kuromi img, .keroppi img, .pompompurin img{
+    width: 200px;
+    border-radius: 100px;
+    margin-top: 50px;
+}
+
+.hellokitty h4, .mymelody h4, .pochacco h4, .cinnamaroli h4, .badtemaru h4, .kuromi h4, .keroppi h4, .pompompurin h4{
+    color: #ffffff;
+    margin-top: 10px;
+    font-size: 20px;
+    font-family: 'Cal Sans', sans-serif;
+    text-align: center;
+}
+
+.mymelody{
+    margin-left: 400px;
+    position: relative;
+    bottom: 310px;
+}   
+
+.pochacco{
+    margin-left: 700px;
+    position: relative;
+    bottom: 610px;
+}
+
+.cinnamaroli{
+    margin-left: 1000px;
+    position: relative;
+    bottom: 910px;
+}
+
+.badtemaru{
+    position: relative;
+    bottom:980px;
+}
+
+.kuromi{
+    margin-left: 400px;
+    position: relative;
+    bottom: 1285px;
+}
+
+.keroppi{
+    margin-left: 700px;
+    position: relative;
+    bottom: 1580px;
+}
+
+.keroppi img{
+    width: 190px;
+    border-radius: 100px;
+    margin-top: 50px;
+}
+
+
+.pompompurin{
+    margin-left: 1000px;
+    position: relative;
+    bottom: 1880px;
+}
+
+.pompompurin img{
+    width: 190px;
+    border-radius: 100px;
+    margin-top: 50px;
+}
+
+.botao {
+    position: relative;
+    bottom: 2000px;
+    left: 1300px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #ffffff, #dcdcdc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    transition: transform 0.2s ease;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 32px; /* Define o tamanho da fonte do texto */
+    color: #d28394; /* Substitua 'blue' pela cor desejada */
+    font-weight: bold;
+    line-height: 1;
+    text-decoration: none; /* Remove a linha de baixo (que não deveria aparecer em um <a> sem texto destacado) */
+}
+
